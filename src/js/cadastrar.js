@@ -36,7 +36,7 @@ export class Cadastrar {
                 
             }
           
-            console.log(data);
+            //console.log(data);
             //precisa ser assincrona async vai no event
             //chamae api e static creatNewUser()
             await Api.cadastrarCliente(data)

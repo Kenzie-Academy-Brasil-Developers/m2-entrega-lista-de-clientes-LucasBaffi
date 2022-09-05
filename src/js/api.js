@@ -1,27 +1,27 @@
 
 
-class Api {
+class  Api {
     //requisao da api  
-    static baseUrl = "https://atividade-api-clientes.herokuapp.com/clientes"
-    //pegar o token
-    //nome da aplicacao:o que esta armazenando(token)
-    static token = localStorage.getItem('@kenzieClientes:token') || ""
+    static baseUrl = "https://atividade-api-clientes.herokuapp.com/clientes"       
     static headers = {
         "content-type": "aplication/json",
-        Authorization: `Bearer ${this.token}`
     }
+    //metodo GET
     static async listarClientes() {
-        const client = await fetch(`${this.baseUrl}/id`, {
-            method: 'GET',
-            headers: this.headers
-        })
-            .then(res => res.json())
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+        try {
+            const cliente = await fetch(`${Api.baseUrl}`, {
+                method: "GET",
+                headers: Api.headers,
+            }); const list = await cliente.json()
+            //console.log(list);
+            return list
+        }
+        catch {
+            console.log('deu erro');
+        }
 
-        return client
     }
-
+    //metodo POST
     static async cadastrarCliente(data) {
 
         const newUser = await fetch(`${this.baseUrl}`, {
@@ -35,7 +35,7 @@ class Api {
         })
             .then(res => res.json())
             .then(res => {
-                 window.location.assign('../../index.html')
+                // window.location.assign('../../index.html')
                 console.log(res);
                 return res
             })
